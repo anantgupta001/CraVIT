@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart'; // Import provider
+import 'package:my_home_app/theme_provider.dart'; // Import ThemeProvider
 
 // Data class for a single mess menu item
 class MessDayMenu {
@@ -343,14 +345,16 @@ Sun        12,26	Gobi Paratha (2 Pcs Standard Size) 	Onions & Cucumber Salad	Pan
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDarkMode = themeProvider.themeMode == ThemeMode.dark;
     List<MessDayMenu> messMenu = _parseMessMenu(_messMenuRawData);
 
     return Scaffold(
-      backgroundColor: Colors.black87,
+      backgroundColor: isDarkMode ? Colors.black87 : Colors.white, // Adjust background based on theme
       appBar: AppBar(
-        title: const Text('Mess Menu', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.black87,
-        iconTheme: const IconThemeData(color: Colors.white), // For back button color
+        title: Text('Mess Menu', style: TextStyle(color: isDarkMode ? Colors.white : Colors.black)), // Adjust title color
+        backgroundColor: isDarkMode ? Colors.black87 : Colors.white, // Adjust app bar background
+        iconTheme: IconThemeData(color: isDarkMode ? Colors.white : Colors.black), // For back button color
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0), // Added horizontal padding
@@ -360,7 +364,7 @@ Sun        12,26	Gobi Paratha (2 Pcs Standard Size) 	Onions & Cucumber Salad	Pan
             MessDayMenu dayMenu = messMenu[index];
             return Card(
               margin: const EdgeInsets.all(8.0),
-              color: Colors.blueGrey[700],
+              color: isDarkMode ? Colors.blueGrey[800] : Colors.blueGrey[100], // Adjust card color based on theme
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -368,13 +372,13 @@ Sun        12,26	Gobi Paratha (2 Pcs Standard Size) 	Onions & Cucumber Salad	Pan
                   children: [
                     Text(
                       dayMenu.dayAndDates,
-                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: isDarkMode ? Colors.white : Colors.black), // Adjust based on theme
                     ),
-                    const Divider(color: Colors.white70),
-                    _buildMealSection('Breakfast', dayMenu.breakfast),
-                    _buildMealSection('Lunch', dayMenu.lunch),
-                    _buildMealSection('Snacks', dayMenu.snacks),
-                    _buildMealSection('Dinner', dayMenu.dinner),
+                    Divider(color: isDarkMode ? Colors.white70 : Colors.black38), // Adjust divider color
+                    _buildMealSection('Breakfast', dayMenu.breakfast, isDarkMode),
+                    _buildMealSection('Lunch', dayMenu.lunch, isDarkMode),
+                    _buildMealSection('Snacks', dayMenu.snacks, isDarkMode),
+                    _buildMealSection('Dinner', dayMenu.dinner, isDarkMode),
                   ],
                 ),
               ),
@@ -385,7 +389,7 @@ Sun        12,26	Gobi Paratha (2 Pcs Standard Size) 	Onions & Cucumber Salad	Pan
     );
   }
 
-  Widget _buildMealSection(String title, List<String> items) {
+  Widget _buildMealSection(String title, List<String> items, bool isDarkMode) {
     if (items.isEmpty) return const SizedBox.shrink();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -394,11 +398,11 @@ Sun        12,26	Gobi Paratha (2 Pcs Standard Size) 	Onions & Cucumber Salad	Pan
         children: [
           Text(
             title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white70),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: isDarkMode ? Colors.white70 : Colors.black54), // Adjust based on theme
           ),
           const SizedBox(height: 4),
           ...
-              items.map((item) => Text('- $item', style: const TextStyle(color: Colors.white54), softWrap: true)).toList(),
+              items.map((item) => Text('- $item', style: TextStyle(color: isDarkMode ? Colors.white54 : Colors.black45), softWrap: true)).toList(), // Adjust based on theme
         ],
       ),
     );

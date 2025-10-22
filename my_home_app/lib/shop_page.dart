@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:provider/provider.dart'; // Import provider
 import 'package:my_home_app/cart_provider.dart'; // Import CartProvider
 import 'package:my_home_app/cart_page.dart'; // Import CartPage
+import 'package:my_home_app/theme_provider.dart'; // Import ThemeProvider
 
 // Data model for a menu item
 class MenuItem {
@@ -63,9 +64,15 @@ class _ShopPageState extends State<ShopPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDarkMode = themeProvider.themeMode == ThemeMode.dark;
+
     return Scaffold(
+      backgroundColor: isDarkMode ? Colors.black87 : Colors.white, // Adjust background based on theme
       appBar: AppBar(
-        title: const Text('Shop'),
+        title: Text('Shop', style: TextStyle(color: isDarkMode ? Colors.white : Colors.black)), // Adjust title color
+        backgroundColor: isDarkMode ? Colors.black87 : Colors.white, // Adjust app bar background
+        iconTheme: IconThemeData(color: isDarkMode ? Colors.white : Colors.black), // For back button color
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0), // Added horizontal padding
@@ -75,11 +82,12 @@ class _ShopPageState extends State<ShopPage> {
             final shop = _shops[index];
             return Card(
               margin: const EdgeInsets.symmetric(vertical: 8.0), // Changed margin to only vertical
+              color: isDarkMode ? Colors.blueGrey[800] : Colors.blueGrey[100], // Adjust card color based on theme
               child: ListTile(
                 leading: CircleAvatar(
                   backgroundImage: NetworkImage(shop.imageUrl),
                 ),
-                title: Text(shop.name),
+                title: Text(shop.name, style: TextStyle(color: isDarkMode ? Colors.white : Colors.black)), // Adjust text color
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -142,11 +150,13 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<CartProvider>(context);
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDarkMode = themeProvider.themeMode == ThemeMode.dark;
 
     return DefaultTabController(
       length: 1, // Only "Food Menu" tab now
       child: Scaffold(
-        backgroundColor: const Color(0xFF1A1A2E), // Dark background color from image
+        backgroundColor: isDarkMode ? const Color(0xFF1A1A2E) : Colors.white, // Dark background color from image
         body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
@@ -155,9 +165,9 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                 floating: true, // Allow the app bar to float
                 pinned: true,
                 snap: true, // Snap to the collapsed or expanded state
-                backgroundColor: const Color(0xFF1A1A2E), // Dark background color
+                backgroundColor: isDarkMode ? const Color(0xFF1A1A2E) : Colors.white, // Dark background color
                 leading: IconButton(
-                  icon: const Icon(Icons.arrow_back_ios, color: Colors.white), // Back button
+                  icon: Icon(Icons.arrow_back_ios, color: isDarkMode ? Colors.white : Colors.black), // Back button
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -167,8 +177,8 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                   titlePadding: const EdgeInsets.only(bottom: 90.0), // Adjusted padding to position name below back arrow and above orange box
                   title: Text(
                     widget.shop.name.toUpperCase(), // SHOP NAME
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: isDarkMode ? Colors.white : Colors.black,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
@@ -180,18 +190,18 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                         widget.shop.imageUrl,
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) =>
-                            const Center(child: Icon(Icons.broken_image, color: Colors.grey, size: 80)),
+                            Icon(Icons.broken_image, color: isDarkMode ? Colors.grey : Colors.grey[700], size: 80), // Adjust based on theme
                       ),
                       Container(
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
                               Colors.transparent,
-                              Color(0xFF1A1A2E),
+                              isDarkMode ? const Color(0xFF1A1A2E) : Colors.white.withOpacity(0.8), // Adjust based on theme
                             ],
-                            stops: [0.6, 1.0],
+                            stops: const [0.6, 1.0],
                           ),
                         ),
                       ),
@@ -201,18 +211,18 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                 bottom: PreferredSize(
                   preferredSize: const Size.fromHeight(48.0), // Height of the TabBar
                   child: Container(
-                    decoration: const BoxDecoration(
-                      color: Color(0xFFFEECE7), // Orange background from image
-                      borderRadius: BorderRadius.only(
+                    decoration: BoxDecoration(
+                      color: isDarkMode ? Colors.blueGrey[800] : const Color(0xFFFEECE7), // Orange background from image
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(30.0),
                         topRight: Radius.circular(30.0),
                       ),
                     ),
-                    child: const TabBar(
-                      indicatorColor: Colors.orange, // Orange indicator for selected tab
-                      labelColor: Colors.black, // Black text for selected tab
-                      unselectedLabelColor: Colors.grey, // Grey text for unselected tabs
-                      tabs: [
+                    child: TabBar(
+                      indicatorColor: isDarkMode ? Colors.amber : Colors.deepOrange, // Orange indicator for selected tab
+                      labelColor: isDarkMode ? Colors.white : Colors.black, // Black text for selected tab
+                      unselectedLabelColor: isDarkMode ? Colors.grey : Colors.grey[600], // Grey text for unselected tabs
+                      tabs: const [
                         Tab(text: 'Food Menu'),
                       ],
                     ),
@@ -225,7 +235,7 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
             children: [
               // Food Menu Tab Content
               Container(
-                color: const Color(0xFFFEECE7), // Orange background from image
+                color: isDarkMode ? const Color(0xFF1A1A2E) : const Color(0xFFFEECE7), // Orange background from image
                 child: ListView.builder(
                   padding: const EdgeInsets.symmetric(vertical: 16.0), // Changed to vertical padding
                   itemCount: _filteredMenu.length + 3, // +3 for Search, Today's Special, and Today's Special Card
@@ -237,16 +247,17 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                           controller: _searchController, // Assign the controller
                           decoration: InputDecoration(
                             hintText: 'Search dishes, restaurants',
-                            hintStyle: TextStyle(color: Colors.grey[600]),
-                            prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
+                            hintStyle: TextStyle(color: isDarkMode ? Colors.grey[400] : Colors.grey[600]), // Adjust based on theme
+                            prefixIcon: Icon(Icons.search, color: isDarkMode ? Colors.grey[400] : Colors.grey[600]), // Adjust based on theme
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: isDarkMode ? Colors.blueGrey[700] : Colors.white, // Adjust based on theme
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                               borderSide: BorderSide.none,
                             ),
                             contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
                           ),
+                          style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), // Adjust text color
                         ),
                       );
                     } else if (index == 1) {
@@ -259,7 +270,7 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.grey[800],
+                              color: isDarkMode ? Colors.white : Colors.grey[800], // Adjust based on theme
                             ),
                           ),
                         ),
@@ -267,7 +278,7 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                     } else if (index == 2) {
                       return Card(
                         margin: const EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0), // Added horizontal padding
-                        color: Colors.white,
+                        color: isDarkMode ? Colors.blueGrey[800] : Colors.white, // Adjust card color based on theme
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
                         ),
@@ -278,28 +289,28 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                             children: [
                               Text(
                                 widget.shop.name, // Shop Name for Today's Special
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: isDarkMode ? Colors.white : Colors.black, // Adjust based on theme
                                 ),
                               ),
                               const SizedBox(height: 8.0),
-                              const Text(
+                              Text(
                                 'Aloo Paratha',
-                                style: TextStyle(fontSize: 16, color: Colors.black87),
+                                style: TextStyle(fontSize: 16, color: isDarkMode ? Colors.white70 : Colors.black87), // Adjust based on theme
                               ),
-                              const Text(
+                              Text(
                                 'Chutney',
-                                style: TextStyle(fontSize: 16, color: Colors.black87),
+                                style: TextStyle(fontSize: 16, color: isDarkMode ? Colors.white70 : Colors.black87), // Adjust based on theme
                               ),
-                              const Text(
+                              Text(
                                 'Dahi',
-                                style: TextStyle(fontSize: 16, color: Colors.black87),
+                                style: TextStyle(fontSize: 16, color: isDarkMode ? Colors.white70 : Colors.black87), // Adjust based on theme
                               ),
-                              const Text(
+                              Text(
                                 'Egg',
-                                style: TextStyle(fontSize: 16, color: Colors.black87),
+                                style: TextStyle(fontSize: 16, color: isDarkMode ? Colors.white70 : Colors.black87), // Adjust based on theme
                               ),
                             ],
                           ),
@@ -309,7 +320,7 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                       final menuItem = _filteredMenu[index - 3]; // Adjust index for the added widgets
                       return Card(
                         margin: const EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0), // Added horizontal padding
-                        color: Colors.white,
+                        color: isDarkMode ? Colors.blueGrey[800] : Colors.white, // Adjust card color based on theme
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
                         ),
@@ -323,35 +334,35 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                                   children: [
                                     Text(
                                       menuItem.name,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.black,
+                                        color: isDarkMode ? Colors.white : Colors.black, // Adjust based on theme
                                       ),
                                     ),
                                     const SizedBox(height: 4.0),
                                     Row(
-                                      children: const [
-                                        Icon(Icons.star, color: Colors.amber, size: 16),
+                                      children: [
+                                        Icon(Icons.star, color: isDarkMode ? Colors.amberAccent : Colors.amber, size: 16), // Adjust based on theme
                                         Text(
                                           '193 ratings',
-                                          style: TextStyle(color: Colors.black54, fontSize: 14),
+                                          style: TextStyle(color: isDarkMode ? Colors.white70 : Colors.black54, fontSize: 14), // Adjust based on theme
                                         ),
                                       ],
                                     ),
                                     const SizedBox(height: 4.0),
                                     Text(
                                       '\$${menuItem.price.toStringAsFixed(2)}',
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.black,
+                                        color: isDarkMode ? Colors.white : Colors.black, // Adjust based on theme
                                       ),
                                     ),
                                     const SizedBox(height: 8.0),
-                                    const Text(
+                                    Text(
                                       'Bahut mehenat krke banai hain ...',
-                                      style: TextStyle(color: Colors.black54, fontSize: 14),
+                                      style: TextStyle(color: isDarkMode ? Colors.white70 : Colors.black54, fontSize: 14), // Adjust based on theme
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                     ),
@@ -366,7 +377,7 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                                     width: 90,
                                     height: 90,
                                     decoration: BoxDecoration(
-                                      color: Colors.grey[200],
+                                      color: isDarkMode ? Colors.blueGrey[700] : Colors.grey[200], // Adjust based on theme
                                       borderRadius: BorderRadius.circular(10.0),
                                     ),
                                     child: ClipRRect(
@@ -375,7 +386,7 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                                         widget.shop.imageUrl,
                                         fit: BoxFit.cover,
                                         errorBuilder: (context, error, stackTrace) =>
-                                            const Icon(Icons.broken_image, color: Colors.grey, size: 40),
+                                            Icon(Icons.broken_image, color: isDarkMode ? Colors.grey[400] : Colors.grey, size: 40), // Adjust based on theme
                                       ),
                                     ),
                                   ),
@@ -390,7 +401,7 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                                         return Container(
                                           height: 30,
                                           decoration: BoxDecoration(
-                                            color: Colors.orange,
+                                            color: isDarkMode ? Colors.orange[700] : Colors.orange, // Adjust based on theme
                                             borderRadius: BorderRadius.circular(8.0),
                                           ),
                                           child: Row(
@@ -433,8 +444,8 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                                               cart.addItem(menuItem, widget.shop.name);
                                               ScaffoldMessenger.of(context).showSnackBar(
                                                 SnackBar(
-                                                  content: const Text('Item added to cart', style: TextStyle(color: Colors.white)),
-                                                  backgroundColor: Colors.black87,
+                                                  content: Text('Item added to cart', style: TextStyle(color: isDarkMode ? Colors.white : Colors.black)), // Adjust based on theme
+                                                  backgroundColor: isDarkMode ? Colors.black87 : Colors.blueGrey[100], // Adjust based on theme
                                                   behavior: SnackBarBehavior.floating,
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius: BorderRadius.circular(10.0),
@@ -442,7 +453,7 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                                                   margin: const EdgeInsets.all(10.0),
                                                   action: SnackBarAction(
                                                     label: 'View Cart',
-                                                    textColor: Colors.orange,
+                                                    textColor: isDarkMode ? Colors.amber : Colors.orange, // Adjust based on theme
                                                     onPressed: () {
                                                       Navigator.of(context).push(
                                                         MaterialPageRoute(
@@ -456,7 +467,7 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                                               );
                                             },
                                             style: ElevatedButton.styleFrom(
-                                              backgroundColor: Colors.green,
+                                              backgroundColor: isDarkMode ? Colors.green[700] : Colors.green, // Adjust based on theme
                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
                                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                                             ),

@@ -3,11 +3,15 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:my_home_app/home_page.dart'; // Import the new home_page.dart
 import 'package:provider/provider.dart'; // Import provider
 import 'package:my_home_app/cart_provider.dart'; // Import CartProvider
+import 'package:my_home_app/theme_provider.dart'; // Import ThemeProvider
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => CartProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CartProvider()),
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -19,27 +23,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-      ),
-      home: const MyHomePage(title: 'Sign in to your account'),
+    return Consumer<ThemeProvider>( // Use Consumer to listen to theme changes
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          themeMode: themeProvider.themeMode, // Use themeMode from ThemeProvider
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+            useMaterial3: true,
+            // Define light theme settings here if needed
+          ),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue, brightness: Brightness.dark),
+            scaffoldBackgroundColor: Colors.black87, // Dark background for dark mode
+            appBarTheme: const AppBarTheme(backgroundColor: Colors.black, foregroundColor: Colors.white), // Dark app bar
+            cardColor: Colors.grey[900], // Dark card color
+            // Define other dark theme settings here
+            useMaterial3: true,
+          ),
+          home: const MyHomePage(title: 'Sign in to your account'),
+        );
+      },
     );
   }
 }
@@ -124,18 +129,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
               ),
               child: const Text("Sign In", style: TextStyle(fontSize: 18, color: Colors.white)),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _handleSignOut,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-              ),
-              child: const Text("Sign Out", style: TextStyle(fontSize: 18, color: Colors.white)),
             ),
           ],
         ),

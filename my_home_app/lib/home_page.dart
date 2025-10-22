@@ -6,6 +6,8 @@ import 'package:my_home_app/cart_page.dart'; // Import the new cart_page.dart
 import 'package:my_home_app/profile_page.dart';
 import 'package:my_home_app/favorite_food_page.dart'; // Import the new favorite_food_page.dart
 import 'package:my_home_app/shop_page.dart'; // Import the new shop_page.dart
+import 'package:provider/provider.dart';
+import 'package:my_home_app/theme_provider.dart';
 
 class HomePage extends StatefulWidget {
   final GoogleSignIn googleSignIn;
@@ -27,6 +29,11 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _getUserName();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _widgetOptions = <Widget>[
       _buildHomeContent(), // Only Home content in the main body
     ];
@@ -41,12 +48,15 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildHomeContent() {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDarkMode = themeProvider.themeMode == ThemeMode.dark;
+
     return Column( // Changed from SingleChildScrollView
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0), // Horizontal padding for the text
-            child: const Text('Upcoming meal', style: TextStyle(color: Colors.white70, fontSize: 24, fontWeight: FontWeight.bold)),
+            child: Text('Upcoming meal', style: TextStyle(color: isDarkMode ? Colors.white70 : Colors.black87, fontSize: 24, fontWeight: FontWeight.bold)), // Adjust based on theme
           ),
           const SizedBox(height: 10), // Space between text and container
           Padding(
@@ -55,22 +65,22 @@ class _HomePageState extends State<HomePage> {
               width: double.infinity, // Ensure width matches external padding
               padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0), // Increased internal vertical padding
               decoration: BoxDecoration(
-                color: Colors.blueGrey[800],
+                color: isDarkMode ? Colors.blueGrey[800] : Colors.blueGrey[100], // Adjust based on theme
                 borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: Colors.blueAccent, width: 2),
+                border: Border.all(color: isDarkMode ? Colors.blueAccent : Colors.lightBlue, width: 2), // Adjust based on theme
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Breakfast', style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.bold)), // Increased font size
+                  Text('Breakfast', style: TextStyle(color: isDarkMode ? Colors.white : Colors.black, fontSize: 36, fontWeight: FontWeight.bold)), // Adjust based on theme
                   const SizedBox(height: 8),
-                  const Text('Aloo Paratha', style: TextStyle(color: Colors.white, fontSize: 20)), // Increased font size
+                  Text('Aloo Paratha', style: TextStyle(color: isDarkMode ? Colors.white : Colors.black, fontSize: 20)), // Adjust based on theme
                   const SizedBox(height: 4),
-                  const Text('Chutney', style: TextStyle(color: Colors.white, fontSize: 20)),
+                  Text('Chutney', style: TextStyle(color: isDarkMode ? Colors.white : Colors.black, fontSize: 20)), // Adjust based on theme
                   const SizedBox(height: 4),
-                  const Text('Dahi', style: TextStyle(color: Colors.white, fontSize: 20)),
+                  Text('Dahi', style: TextStyle(color: isDarkMode ? Colors.white : Colors.black, fontSize: 20)), // Adjust based on theme
                   const SizedBox(height: 4),
-                  const Text('Egg', style: TextStyle(color: Colors.white, fontSize: 20)),
+                  Text('Egg', style: TextStyle(color: isDarkMode ? Colors.white : Colors.black, fontSize: 20)), // Adjust based on theme
                 ],
               ),
             ),
@@ -80,7 +90,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.only(left: 16.0, right: 16.0), // Reduced left padding for Greetings User!
             child: Text(
               'Greetings ${_userName ?? 'User'} !',
-              style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: isDarkMode ? Colors.white : Colors.black), // Adjust based on theme
             ),
           ),
           const SizedBox(height: 30), // Adjusted space between Greetings User! and All Shops grid
@@ -89,9 +99,9 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               padding: const EdgeInsets.all(16.0), // Reduced internal padding
               decoration: BoxDecoration(
-                color: Colors.blueGrey[800],
+                color: isDarkMode ? Colors.blueGrey[800] : Colors.blueGrey[100], // Adjust based on theme
                 borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: Colors.amber, width: 2),
+                border: Border.all(color: isDarkMode ? Colors.amber : Colors.deepOrange, width: 2), // Adjust based on theme
               ),
               child: GridView.count(
                 shrinkWrap: true,
@@ -100,16 +110,16 @@ class _HomePageState extends State<HomePage> {
                 mainAxisSpacing: 25.0, // Spacing between rows
                 crossAxisSpacing: 25.0, // Spacing between columns
                 children: <Widget>[
-                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.store, color: Colors.white, size: 50))), // Wrapped in SizedBox
-                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.restaurant, color: Colors.white, size: 50))), // Wrapped in SizedBox
-                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.local_cafe, color: Colors.white, size: 50))), // Wrapped in SizedBox
-                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.shopping_bag, color: Colors.white, size: 50))), // Wrapped in SizedBox
-                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.fastfood, color: Colors.white, size: 50))), // Wrapped in SizedBox
+                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.store, color: isDarkMode ? Colors.white : Colors.black, size: 50))), // Adjust based on theme
+                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.restaurant, color: isDarkMode ? Colors.white : Colors.black, size: 50))), // Adjust based on theme
+                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.local_cafe, color: isDarkMode ? Colors.white : Colors.black, size: 50))), // Adjust based on theme
+                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.shopping_bag, color: isDarkMode ? Colors.white : Colors.black, size: 50))), // Adjust based on theme
+                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.fastfood, color: isDarkMode ? Colors.white : Colors.black, size: 50))), // Adjust based on theme
                   SizedBox(
                     width: 100,
                     height: 100,
                     child: IconButton(
-                      icon: const Icon(Icons.apps, color: Colors.white, size: 50),
+                      icon: Icon(Icons.apps, color: isDarkMode ? Colors.white : Colors.black, size: 50), // Adjust based on theme
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) => const ShopPage()),
@@ -127,8 +137,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDarkMode = themeProvider.themeMode == ThemeMode.dark;
+
     return Scaffold(
-      backgroundColor: Colors.black87,
+      backgroundColor: isDarkMode ? Colors.black87 : Colors.white, // Dark background for dark mode, white for light mode
       appBar: null, // Remove the AppBar
       body: Column(
         children: [
@@ -140,8 +153,8 @@ class _HomePageState extends State<HomePage> {
               children: [
                 IconButton(
                   icon: CircleAvatar(
-                    backgroundColor: Colors.blueGrey[400],
-                    child: const Icon(Icons.person, color: Colors.white70),
+                    backgroundColor: isDarkMode ? Colors.blueGrey[700] : Colors.blueGrey[400], // Adjust based on theme
+                    child: Icon(Icons.person, color: isDarkMode ? Colors.white70 : Colors.black54), // Adjust based on theme
                   ),
                   onPressed: () {
                     Navigator.of(context).push(
@@ -161,31 +174,31 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.amber[800],
+        backgroundColor: isDarkMode ? Colors.orange[800] : Colors.amber[800], // Adjust based on theme
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => const CartPage()), // Changed to CartPage
           ); // Navigate to Cart page using FloatingActionButton
         },
         shape: const CircleBorder(),
-        child: const Icon(Icons.shopping_cart, color: Colors.white, size: 30), // Changed to shopping_cart icon
+        child: const Icon(Icons.shopping_cart, color: Colors.white, size: 30), // Consistent white icon
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
+        color: isDarkMode ? Colors.black : Colors.blueGrey[50], // Adjust based on theme
         shape: const CircularNotchedRectangle(),
         notchMargin: 8.0,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             IconButton(
-              icon: const Icon(Icons.home, color: Colors.amber),
+              icon: Icon(Icons.home, color: isDarkMode ? Colors.amber : Colors.deepOrange), // Adjust based on theme
               onPressed: () {
                 // Already on home, no action needed or refresh current page
               },
             ),
             IconButton(
-              icon: const Icon(Icons.apartment, color: Colors.white),
+              icon: Icon(Icons.apartment, color: isDarkMode ? Colors.white : Colors.black54), // Adjust based on theme
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const MessMenuPage()),
@@ -194,7 +207,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(width: 48), // The space for the FloatingActionButton
             IconButton(
-              icon: const Icon(Icons.favorite, color: Colors.white),
+              icon: Icon(Icons.favorite, color: isDarkMode ? Colors.white : Colors.black54), // Adjust based on theme
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const FavoriteFoodPage()),
@@ -202,7 +215,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             IconButton(
-              icon: const Icon(Icons.notifications, color: Colors.white),
+              icon: Icon(Icons.notifications, color: isDarkMode ? Colors.white : Colors.black54), // Adjust based on theme
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const NotificationPage()),
