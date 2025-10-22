@@ -28,11 +28,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _getUserName();
     _widgetOptions = <Widget>[
-      _buildHomeContent(), // 0: Home
-      const MessMenuPage(), // 1: Mess Menu
-      Builder(builder: (context) => const CartPage()), // 2: Cart - Wrapped with Builder
-      const NotificationPage(), // 3: Notifications - Index shifted
-      const FavoriteFoodPage(), // 4: Favorite Food
+      _buildHomeContent(), // Only Home content in the main body
     ];
   }
 
@@ -45,86 +41,134 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildHomeContent() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center( // Wrap the Text widget with Center
-          child: Text(
-            'Greeting ${_userName ?? 'User'}!',
-            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+    return Column( // Changed from SingleChildScrollView
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0), // Horizontal padding for the text
+            child: const Text('Upcoming meal', style: TextStyle(color: Colors.white70, fontSize: 24, fontWeight: FontWeight.bold)),
           ),
-        ),
-        const SizedBox(height: 50),
-        ElevatedButton(
-          onPressed: () {
-            setState(() {
-              _onItemTapped(4); // Use _onItemTapped for consistency
-            });
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.amber[800],
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-            textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          const SizedBox(height: 10), // Space between text and container
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 10.0), // Original horizontal, no top padding, original bottom padding
+            child: Container(
+              width: double.infinity, // Ensure width matches external padding
+              padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0), // Increased internal vertical padding
+              decoration: BoxDecoration(
+                color: Colors.blueGrey[800],
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: Colors.blueAccent, width: 2),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Breakfast', style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.bold)), // Increased font size
+                  const SizedBox(height: 8),
+                  const Text('Aloo Paratha', style: TextStyle(color: Colors.white, fontSize: 20)), // Increased font size
+                  const SizedBox(height: 4),
+                  const Text('Chutney', style: TextStyle(color: Colors.white, fontSize: 20)),
+                  const SizedBox(height: 4),
+                  const Text('Dahi', style: TextStyle(color: Colors.white, fontSize: 20)),
+                  const SizedBox(height: 4),
+                  const Text('Egg', style: TextStyle(color: Colors.white, fontSize: 20)),
+                ],
+              ),
+            ),
           ),
-          child: const Text('Favorite Food', style: TextStyle(color: Colors.white)),
-        ),
-        const SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const ShopPage()),
-            );
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.amber[800],
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-            textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          const SizedBox(height: 60), // Space after Upcoming meal and before Greetings User!
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 16.0), // Reduced left padding for Greetings User!
+            child: Text(
+              'Greetings ${_userName ?? 'User'} !',
+              style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white),
+            ),
           ),
-          child: const Text('Shop', style: TextStyle(color: Colors.white)),
-        ),
-        const SizedBox(height: 20),
-      ],
-    );
+          const SizedBox(height: 30), // Adjusted space between Greetings User! and All Shops grid
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0), // Reduced vertical padding for All Shops container
+            child: Container(
+              padding: const EdgeInsets.all(16.0), // Reduced internal padding
+              decoration: BoxDecoration(
+                color: Colors.blueGrey[800],
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: Colors.amber, width: 2),
+              ),
+              child: GridView.count(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisCount: 3, // Changed to 3 columns for 2x3 grid
+                mainAxisSpacing: 25.0, // Spacing between rows
+                crossAxisSpacing: 25.0, // Spacing between columns
+                children: <Widget>[
+                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.store, color: Colors.white, size: 50))), // Wrapped in SizedBox
+                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.restaurant, color: Colors.white, size: 50))), // Wrapped in SizedBox
+                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.local_cafe, color: Colors.white, size: 50))), // Wrapped in SizedBox
+                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.shopping_bag, color: Colors.white, size: 50))), // Wrapped in SizedBox
+                  SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.fastfood, color: Colors.white, size: 50))), // Wrapped in SizedBox
+                  SizedBox(
+                    width: 100,
+                    height: 100,
+                    child: IconButton(
+                      icon: const Icon(Icons.apps, color: Colors.white, size: 50),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => const ShopPage()),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black87,
-      appBar: AppBar(
-        backgroundColor: Colors.black87,
-        title: Text(
-          _selectedIndex == 0 ? 'Home' :
-          _selectedIndex == 1 ? 'Mess Menu' :
-          _selectedIndex == 2 ? 'Cart' : // New index for Cart
-          _selectedIndex == 3 ? 'Notifications' : // New index for Notifications
-          'Favorite Food', // Remains index 4
-          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        actions: [
-          IconButton(
-            icon: CircleAvatar(
-              backgroundColor: Colors.blueGrey[400],
-              child: const Icon(Icons.person, color: Colors.white70),
+      appBar: null, // Remove the AppBar
+      body: Column(
+        children: [
+          const SizedBox(height: 50), // Added space to shift profile icon down
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end, // Align the profile icon to the right
+              children: [
+                IconButton(
+                  icon: CircleAvatar(
+                    backgroundColor: Colors.blueGrey[400],
+                    child: const Icon(Icons.person, color: Colors.white70),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => ProfilePage(googleSignIn: widget.googleSignIn)),
+                    );
+                  },
+                ),
+              ],
             ),
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ProfilePage(googleSignIn: widget.googleSignIn)),
-              );
-            },
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0), // Added horizontal padding
+              child: _widgetOptions.elementAt(0), // Always show _buildHomeContent
+            ),
           ),
         ],
       ),
-      body: _widgetOptions.elementAt(_selectedIndex),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.amber[800],
         onPressed: () {
-          setState(() {
-            _selectedIndex = 2; // Navigate to Cart page
-          });
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const CartPage()), // Changed to CartPage
+          ); // Navigate to Cart page using FloatingActionButton
         },
         shape: const CircleBorder(),
-        child: const Icon(Icons.shopping_cart, color: Colors.white, size: 30),
+        child: const Icon(Icons.shopping_cart, color: Colors.white, size: 30), // Changed to shopping_cart icon
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
@@ -135,21 +179,35 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             IconButton(
-              icon: Icon(Icons.home, color: _selectedIndex == 0 ? Colors.amber[800] : Colors.white),
-              onPressed: () => _onItemTapped(0),
+              icon: const Icon(Icons.home, color: Colors.amber),
+              onPressed: () {
+                // Already on home, no action needed or refresh current page
+              },
             ),
             IconButton(
-              icon: Icon(Icons.restaurant_menu, color: _selectedIndex == 1 ? Colors.amber[800] : Colors.white),
-              onPressed: () => _onItemTapped(1),
+              icon: const Icon(Icons.apartment, color: Colors.white),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const MessMenuPage()),
+                );
+              },
             ),
             const SizedBox(width: 48), // The space for the FloatingActionButton
             IconButton(
-              icon: Icon(Icons.notifications, color: _selectedIndex == 3 ? Colors.amber[800] : Colors.white),
-              onPressed: () => _onItemTapped(3),
+              icon: const Icon(Icons.favorite, color: Colors.white),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const FavoriteFoodPage()),
+                );
+              },
             ),
             IconButton(
-              icon: Icon(Icons.favorite, color: _selectedIndex == 4 ? Colors.amber[800] : Colors.white),
-              onPressed: () => _onItemTapped(4),
+              icon: const Icon(Icons.notifications, color: Colors.white),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const NotificationPage()),
+                );
+              },
             ),
           ],
         ),
@@ -157,9 +215,5 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  // Remove _onItemTapped as direct navigation is used for bottom nav bar
 }

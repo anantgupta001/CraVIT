@@ -352,32 +352,35 @@ Sun        12,26	Gobi Paratha (2 Pcs Standard Size) 	Onions & Cucumber Salad	Pan
         backgroundColor: Colors.black87,
         iconTheme: const IconThemeData(color: Colors.white), // For back button color
       ),
-      body: ListView.builder(
-        itemCount: messMenu.length,
-        itemBuilder: (context, index) {
-          MessDayMenu dayMenu = messMenu[index];
-          return Card(
-            margin: const EdgeInsets.all(8.0),
-            color: Colors.blueGrey[700],
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    dayMenu.dayAndDates,
-                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  const Divider(color: Colors.white70),
-                  _buildMealSection('Breakfast', dayMenu.breakfast),
-                  _buildMealSection('Lunch', dayMenu.lunch),
-                  _buildMealSection('Snacks', dayMenu.snacks),
-                  _buildMealSection('Dinner', dayMenu.dinner),
-                ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0), // Added horizontal padding
+        child: ListView.builder(
+          itemCount: messMenu.length,
+          itemBuilder: (context, index) {
+            MessDayMenu dayMenu = messMenu[index];
+            return Card(
+              margin: const EdgeInsets.all(8.0),
+              color: Colors.blueGrey[700],
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      dayMenu.dayAndDates,
+                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                    const Divider(color: Colors.white70),
+                    _buildMealSection('Breakfast', dayMenu.breakfast),
+                    _buildMealSection('Lunch', dayMenu.lunch),
+                    _buildMealSection('Snacks', dayMenu.snacks),
+                    _buildMealSection('Dinner', dayMenu.dinner),
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

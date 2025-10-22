@@ -29,14 +29,17 @@ class CartPage extends StatelessWidget {
       body: Stack(
         children: [
           cart.items.isEmpty
-              ? const Center(
-                  child: Text(
-                    'Your cart is empty',
-                    style: TextStyle(fontSize: 24, color: Colors.white70),
+              ? const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0), // Added horizontal padding
+                  child: Center(
+                    child: Text(
+                      'Your cart is empty',
+                      style: TextStyle(fontSize: 24, color: Colors.white70),
+                    ),
                   ),
                 )
               : Padding(
-                  padding: const EdgeInsets.only(bottom: 100.0), // Space for bottom bar
+                  padding: const EdgeInsets.only(bottom: 100.0, left: 16.0, right: 16.0), // Added horizontal padding here
                   child: ListView.builder(
                     itemCount: cart.items.length,
                     itemBuilder: (context, index) {

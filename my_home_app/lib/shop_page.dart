@@ -67,27 +67,30 @@ class _ShopPageState extends State<ShopPage> {
       appBar: AppBar(
         title: const Text('Shop'),
       ),
-      body: ListView.builder(
-        itemCount: _shops.length,
-        itemBuilder: (context, index) {
-          final shop = _shops[index];
-          return Card(
-            margin: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(shop.imageUrl),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0), // Added horizontal padding
+        child: ListView.builder(
+          itemCount: _shops.length,
+          itemBuilder: (context, index) {
+            final shop = _shops[index];
+            return Card(
+              margin: const EdgeInsets.symmetric(vertical: 8.0), // Changed margin to only vertical
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(shop.imageUrl),
+                ),
+                title: Text(shop.name),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ShopDetailPage(shop: shop),
+                    ),
+                  );
+                },
               ),
-              title: Text(shop.name),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => ShopDetailPage(shop: shop),
-                  ),
-                );
-              },
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
@@ -103,6 +106,39 @@ class ShopDetailPage extends StatefulWidget {
 }
 
 class _ShopDetailPageState extends State<ShopDetailPage> {
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+  List<MenuItem> _filteredMenu = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _filteredMenu = widget.shop.menu; // Initialize with all menu items
+    _searchController.addListener(_filterMenu);
+  }
+
+  @override
+  void dispose() {
+    _searchController.removeListener(_filterMenu);
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _filterMenu() {
+    setState(() {
+      _searchQuery = _searchController.text;
+      if (_searchQuery.isEmpty) {
+        _filteredMenu = widget.shop.menu;
+      } else {
+        _filteredMenu = widget.shop.menu.where((item) {
+          // Use regex for case-insensitive search
+          final regex = RegExp(_searchQuery, caseSensitive: false);
+          return regex.hasMatch(item.name);
+        }).toList();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<CartProvider>(context);
@@ -191,13 +227,14 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
               Container(
                 color: const Color(0xFFFEECE7), // Orange background from image
                 child: ListView.builder(
-                  padding: const EdgeInsets.all(16.0),
-                  itemCount: widget.shop.menu.length + 3, // +3 for Search, Today's Special, and Today's Special Card
+                  padding: const EdgeInsets.symmetric(vertical: 16.0), // Changed to vertical padding
+                  itemCount: _filteredMenu.length + 3, // +3 for Search, Today's Special, and Today's Special Card
                   itemBuilder: (context, index) {
                     if (index == 0) {
                       return Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
+                        padding: const EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0), // Added horizontal padding
                         child: TextField(
+                          controller: _searchController, // Assign the controller
                           decoration: InputDecoration(
                             hintText: 'Search dishes, restaurants',
                             hintStyle: TextStyle(color: Colors.grey[600]),
@@ -214,7 +251,7 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                       );
                     } else if (index == 1) {
                       return Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
+                        padding: const EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0), // Added horizontal padding
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
@@ -229,7 +266,7 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                       );
                     } else if (index == 2) {
                       return Card(
-                        margin: const EdgeInsets.only(bottom: 16.0),
+                        margin: const EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0), // Added horizontal padding
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
@@ -269,9 +306,9 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                         ),
                       );
                     } else {
-                      final menuItem = widget.shop.menu[index - 3]; // Adjust index for the added widgets
+                      final menuItem = _filteredMenu[index - 3]; // Adjust index for the added widgets
                       return Card(
-                        margin: const EdgeInsets.only(bottom: 16.0),
+                        margin: const EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0), // Added horizontal padding
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
