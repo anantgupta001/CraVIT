@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:my_home_app/home_page.dart'; // Import the new home_page.dart
+import 'package:provider/provider.dart'; // Import provider
+import 'package:my_home_app/cart_provider.dart'; // Import CartProvider
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => CartProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

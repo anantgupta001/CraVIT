@@ -5,6 +5,7 @@ import 'package:my_home_app/notification_page.dart'; // Import the new notificat
 import 'package:my_home_app/cart_page.dart'; // Import the new cart_page.dart
 import 'package:my_home_app/profile_page.dart';
 import 'package:my_home_app/favorite_food_page.dart'; // Import the new favorite_food_page.dart
+import 'package:my_home_app/shop_page.dart'; // Import the new shop_page.dart
 
 class HomePage extends StatefulWidget {
   final GoogleSignIn googleSignIn;
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
     _widgetOptions = <Widget>[
       _buildHomeContent(), // 0: Home
       const MessMenuPage(), // 1: Mess Menu
-      const CartPage(), // 2: Cart - Moved to middle
+      Builder(builder: (context) => const CartPage()), // 2: Cart - Wrapped with Builder
       const NotificationPage(), // 3: Notifications - Index shifted
       const FavoriteFoodPage(), // 4: Favorite Food
     ];
@@ -66,6 +67,20 @@ class _HomePageState extends State<HomePage> {
             textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           child: const Text('Favorite Food', style: TextStyle(color: Colors.white)),
+        ),
+        const SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const ShopPage()),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.amber[800],
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+            textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          child: const Text('Shop', style: TextStyle(color: Colors.white)),
         ),
         const SizedBox(height: 20),
       ],
