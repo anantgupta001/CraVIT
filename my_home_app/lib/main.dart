@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
     return Consumer<ThemeProvider>( // Use Consumer to listen to theme changes
       builder: (context, themeProvider, child) {
         return MaterialApp(
-          title: 'Flutter Demo',
+          title: 'CraVIT',
+          debugShowCheckedModeBanner: false,
           themeMode: themeProvider.themeMode, // Use themeMode from ThemeProvider
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
