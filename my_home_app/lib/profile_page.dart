@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:my_home_app/main.dart';
-import 'package:my_home_app/cart_page.dart'; // Import the cart_page.dart
-import 'package:my_home_app/favorite_food_page.dart'; // Import the favorite_food_page.dart
-import 'package:my_home_app/notification_page.dart'; // Import the notification_page.dart
-import 'package:my_home_app/settings_page.dart'; // Import the new settings_page.dart
+import 'package:cravit/main.dart';
+import 'package:cravit/cart_page.dart'; // Import the cart_page.dart
+import 'package:cravit/favorite_food_page.dart'; // Import the favorite_food_page.dart
+import 'package:cravit/notification_page.dart'; // Import the notification_page.dart
+import 'package:cravit/settings_page.dart'; // Import the new settings_page.dart
+import 'package:cravit/personal_information_page.dart'; // Import the new personal_information_page.dart
 import 'package:provider/provider.dart'; // Import provider
-import 'package:my_home_app/theme_provider.dart'; // Import ThemeProvider
+import 'package:cravit/theme_provider.dart'; // Import ThemeProvider
 
 class ProfilePage extends StatefulWidget {
   final GoogleSignIn googleSignIn;
+  final String? userEmail;
+  final String? userName;
+  final String? userPhotoUrl; // Add userPhotoUrl parameter
 
-  const ProfilePage({super.key, required this.googleSignIn});
+  const ProfilePage({super.key, required this.googleSignIn, this.userEmail, this.userName, this.userPhotoUrl}); // Update constructor
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -23,23 +27,25 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    _getUserName();
+    _userName = widget.userName; // Initialize from widget.userName
+    // _getUserName(); // No longer needed as userName is passed
   }
 
-  void _getUserName() {
-    if (widget.googleSignIn.currentUser != null) {
-      setState(() {
-        _userName = widget.googleSignIn.currentUser!.displayName;
-      });
-    }
-  }
+  // Removed _getUserName method
+  // void _getUserName() {
+  //   if (widget.googleSignIn.currentUser != null) {
+  //     setState(() {
+  //       _userName = widget.googleSignIn.currentUser!.displayName;
+  //     });
+  //   }
+  // }
 
   Future<void> _handleSignOut() async {
     try {
       await widget.googleSignIn.signOut();
       print('Signed out from Google (from Profile Page)');
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Sign in to your account')),
+        MaterialPageRoute(builder: (context) => MyHomePage(title: 'Sign in to your account')),
       );
     } catch (error) {
       print('Error signing out from Google (from Profile Page): $error');
@@ -69,7 +75,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   CircleAvatar(
                     radius: 40,
                     backgroundColor: isDarkMode ? Colors.blueGrey[700] : Colors.blueGrey[400], // Adjust based on theme
-                    child: Icon(Icons.person, size: 50, color: isDarkMode ? Colors.white70 : Colors.black54), // Placeholder icon
+                    backgroundImage: widget.userPhotoUrl != null ? NetworkImage(widget.userPhotoUrl!) : null, // Use NetworkImage if photoUrl is available
+                    child: widget.userPhotoUrl == null ? Icon(Icons.person, size: 50, color: isDarkMode ? Colors.white70 : Colors.black54) : null, // Placeholder icon
                   ),
                   SizedBox(width: 16),
                   Text(
@@ -82,8 +89,11 @@ class _ProfilePageState extends State<ProfilePage> {
             _buildSection(
               context,
               [
-                _buildListItem(context, Icons.person, 'Personal Info', () {}, iconColor: isDarkMode ? Colors.white : Colors.black54, textColor: isDarkMode ? Colors.white : Colors.black),
-                _buildListItem(context, Icons.location_on, 'Addresses', () {}, iconColor: isDarkMode ? Colors.white : Colors.black54, textColor: isDarkMode ? Colors.white : Colors.black),
+                _buildListItem(context, Icons.person, 'Personal Info', () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => PersonalInformationPage(fullName: _userName ?? '', email: widget.userEmail ?? '', photoUrl: widget.userPhotoUrl)),
+                  );
+                }, iconColor: isDarkMode ? Colors.white : Colors.black54, textColor: isDarkMode ? Colors.white : Colors.black),
               ],
             ),
             SizedBox(height: 20),
@@ -92,20 +102,19 @@ class _ProfilePageState extends State<ProfilePage> {
               [
                 _buildListItem(context, Icons.shopping_cart, 'Cart', () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const CartPage()),
+                    MaterialPageRoute(builder: (context) => CartPage()),
                   );
                 }, iconColor: isDarkMode ? Colors.white : Colors.black54, textColor: isDarkMode ? Colors.white : Colors.black),
                 _buildListItem(context, Icons.favorite, 'Favourite', () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const FavoriteFoodPage()),
+                    MaterialPageRoute(builder: (context) => FavoriteFoodPage()),
                   );
                 }, iconColor: isDarkMode ? Colors.white : Colors.black54, textColor: isDarkMode ? Colors.white : Colors.black),
                 _buildListItem(context, Icons.notifications, 'Notifications', () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const NotificationPage()),
+                    MaterialPageRoute(builder: (context) => NotificationPage()),
                   );
                 }, iconColor: isDarkMode ? Colors.white : Colors.black54, textColor: isDarkMode ? Colors.white : Colors.black),
-                _buildListItem(context, Icons.payment, 'Payment Method', () {}, iconColor: isDarkMode ? Colors.white : Colors.black54, textColor: isDarkMode ? Colors.white : Colors.black),
               ],
             ),
             SizedBox(height: 20),
@@ -116,7 +125,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 _buildListItem(context, Icons.info, 'About', () {}, iconColor: isDarkMode ? Colors.white : Colors.black54, textColor: isDarkMode ? Colors.white : Colors.black),
                 _buildListItem(context, Icons.settings, 'Settings', () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const SettingsPage()),
+                    MaterialPageRoute(builder: (context) => SettingsPage()),
                   );
                 }, iconColor: isDarkMode ? Colors.white : Colors.black54, textColor: isDarkMode ? Colors.white : Colors.black),
               ],

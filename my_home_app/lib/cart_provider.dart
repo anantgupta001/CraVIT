@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_home_app/shop_page.dart'; // For MenuItem
+import 'package:cravit/shop_page.dart'; // For MenuItem
 
 class CartItem {
   final MenuItem menuItem;

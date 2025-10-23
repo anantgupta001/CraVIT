@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart'; // Import Razorpay Flutter
 import 'package:provider/provider.dart';
-import 'package:my_home_app/cart_provider.dart';
-import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:cravit/cart_provider.dart';
+import 'package:cravit/shop_page.dart'; // For MenuItem
+import 'package:cravit/theme_provider.dart'; // Import ThemeProvider
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:my_home_app/theme_provider.dart'; // Import ThemeProvider
+import 'package:cravit/cart_provider.dart' show CartItem; // Explicitly import CartItem
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -125,6 +127,9 @@ class _CartPageState extends State<CartPage> {
             right: 0,
             child: Consumer<CartProvider>(
               builder: (context, cart, child) {
+                if (cart.items.isEmpty) {
+                  return SizedBox.shrink(); // Hide the checkout button when cart is empty
+                }
                 return Container(
                   padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(

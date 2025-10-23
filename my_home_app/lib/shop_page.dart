@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:provider/provider.dart'; // Import provider
-import 'package:my_home_app/cart_provider.dart'; // Import CartProvider
-import 'package:my_home_app/cart_page.dart'; // Import CartPage
-import 'package:my_home_app/theme_provider.dart'; // Import ThemeProvider
+import 'package:cravit/cart_provider.dart'; // Import CartProvider
+import 'package:cravit/cart_page.dart'; // Import CartPage
+import 'package:cravit/theme_provider.dart'; // Import ThemeProvider
+import 'package:cravit/favorite_provider.dart'; // Import FavoriteProvider
 
 // Data model for a menu item
 class MenuItem {
   final String name;
   final double price;
+  bool isFavorite; // Add this field
 
-  MenuItem({required this.name, required this.price});
+  MenuItem({required this.name, required this.price, this.isFavorite = false});
 }
 
 // Data model for a shop
@@ -56,7 +58,7 @@ class _ShopPageState extends State<ShopPage> {
       for (int j = 0; j < 5; j++) { // Each shop has 5 random menu items
         final String itemName = foodItems[random.nextInt(foodItems.length)];
         final double itemPrice = (random.nextDouble() * 10 + 5).roundToDouble(); // Price between 5 and 15
-        menu.add(MenuItem(name: itemName, price: itemPrice));
+        menu.add(MenuItem(name: itemName, price: itemPrice, isFavorite: false)); // Initialize isFavorite to false
       }
       _shops.add(Shop(name: shopName, imageUrl: imageUrl, menu: menu));
     }
@@ -332,13 +334,32 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      menuItem.name,
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: isDarkMode ? Colors.white : Colors.black, // Adjust based on theme
-                                      ),
+                                    Row( // Wrap Text and IconButton in a Row
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween, // Space out title and icon
+                                      children: [
+                                        Text(
+                                          menuItem.name,
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: isDarkMode ? Colors.white : Colors.black, // Adjust based on theme
+                                          ),
+                                        ),
+                                        Consumer<FavoriteProvider>(
+                                          builder: (context, favoriteProvider, child) {
+                                            bool isFav = favoriteProvider.isFavorite(menuItem);
+                                            return IconButton(
+                                              icon: Icon(
+                                                isFav ? Icons.favorite : Icons.favorite_border,
+                                                color: isFav ? Colors.red : (isDarkMode ? Colors.white70 : Colors.black54),
+                                              ),
+                                              onPressed: () {
+                                                favoriteProvider.toggleFavorite(menuItem);
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ],
                                     ),
                                     const SizedBox(height: 4.0),
                                     Row(

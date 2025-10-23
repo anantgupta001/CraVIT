@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:my_home_app/home_page.dart'; // Import the new home_page.dart
+import 'package:cravit/home_page.dart'; // Import the new home_page.dart
 import 'package:provider/provider.dart'; // Import provider
-import 'package:my_home_app/cart_provider.dart'; // Import CartProvider
-import 'package:my_home_app/theme_provider.dart'; // Import ThemeProvider
+import 'package:cravit/cart_provider.dart'; // Import CartProvider
+import 'package:cravit/theme_provider.dart'; // Import ThemeProvider
+import 'package:cravit/favorite_provider.dart'; // Import FavoriteProvider
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => CartProvider()),
-        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider<CartProvider>(create: (context) => CartProvider()),
+        ChangeNotifierProvider<ThemeProvider>(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider<FavoriteProvider>(create: (context) => FavoriteProvider()), // Add FavoriteProvider
       ],
       child: const MyApp(),
     ),
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'CraVIT',
           debugShowCheckedModeBanner: false,
-          themeMode: themeProvider.themeMode, // Use themeMode from ThemeProvider
+          themeMode: (themeProvider as ThemeProvider).themeMode, // Use themeMode from ThemeProvider
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             useMaterial3: true,
@@ -77,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
       print('Signed in with Google: ${_googleSignIn.currentUser?.displayName}');
       if (_googleSignIn.currentUser != null) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => HomePage(googleSignIn: _googleSignIn)), // Pass googleSignIn
+          MaterialPageRoute(builder: (context) => HomePage(googleSignIn: _googleSignIn, userEmail: _googleSignIn.currentUser?.email, userName: _googleSignIn.currentUser?.displayName, userPhotoUrl: _googleSignIn.currentUser?.photoUrl)), // Pass googleSignIn, userEmail, userName, and userPhotoUrl
         );
       }
     } catch (error) {

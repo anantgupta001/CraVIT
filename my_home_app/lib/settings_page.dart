@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:my_home_app/theme_provider.dart';
+import 'package:cravit/theme_provider.dart'; // Import ThemeProvider
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart'; // Import provider
-import 'package:my_home_app/theme_provider.dart'; // Import ThemeProvider
+import 'package:cravit/theme_provider.dart'; // Import ThemeProvider
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({super.key});
