@@ -221,11 +221,46 @@ class _HomePageState extends State<HomePage> {
                       mainAxisSpacing: 25.0, // Spacing between rows
                       crossAxisSpacing: 25.0, // Spacing between columns
                       children: <Widget>[
-                        SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.store, color: isDarkMode ? Colors.white : Colors.black, size: 50))), // Adjust based on theme
-                        SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.restaurant, color: isDarkMode ? Colors.white : Colors.black, size: 50))), // Adjust based on theme
-                        SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.local_cafe, color: isDarkMode ? Colors.white : Colors.black, size: 50))), // Adjust based on theme
-                        SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.shopping_bag, color: isDarkMode ? Colors.white : Colors.black, size: 50))), // Adjust based on theme
-                        SizedBox(width: 100, height: 100, child: Center(child: Icon(Icons.fastfood, color: isDarkMode ? Colors.white : Colors.black, size: 50))), // Adjust based on theme
+                        IconButton(
+                          icon: Icon(Icons.store, color: isDarkMode ? Colors.white : Colors.black, size: 50), // Adjust based on theme
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => ShopPage()), // All Shops
+                            );
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.restaurant, color: isDarkMode ? Colors.white : Colors.black, size: 50), // Adjust based on theme
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => ShopPage(shopCategory: 'Restaurant')),
+                            );
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.local_cafe, color: isDarkMode ? Colors.white : Colors.black, size: 50), // Adjust based on theme
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => ShopPage(shopCategory: 'Cafe')),
+                            );
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.shopping_bag, color: isDarkMode ? Colors.white : Colors.black, size: 50), // Adjust based on theme
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => ShopPage(shopCategory: 'Desserts')),
+                            );
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.fastfood, color: isDarkMode ? Colors.white : Colors.black, size: 50), // Adjust based on theme
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => ShopPage(shopCategory: 'Fast Food')),
+                            );
+                          },
+                        ),
                         SizedBox(
                           width: 100,
                           height: 100,
@@ -233,7 +268,7 @@ class _HomePageState extends State<HomePage> {
                             icon: Icon(Icons.apps, color: isDarkMode ? Colors.white : Colors.black, size: 50), // Adjust based on theme
                             onPressed: () {
                               Navigator.of(context).push(
-                                MaterialPageRoute(builder: (context) => ShopPage()),
+                                MaterialPageRoute(builder: (context) => ShopPage()), // All Shops (or a dedicated 'More' page)
                               );
                             },
                           ),

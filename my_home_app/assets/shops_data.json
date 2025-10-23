@@ -1,0 +1,1026 @@
+[
+  {
+    "name": "The Grand Cafe",
+    "imageUrl": "https://picsum.photos/200/200?random=0",
+    "category": "Cafe",
+    "rating": 4.5,
+    "reviewCount": 120,
+    "location": "Building A, Ground Floor",
+    "menu": [
+      {
+        "name": "Cappuccino",
+        "price": 4.50,
+        "isFavorite": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Latte",
+        "price": 4.75,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Croissant",
+        "price": 3.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Blueberry Muffin",
+        "price": 3.50,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Espresso",
+        "price": 3.25,
+        "isFavorite": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Matcha Latte",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Americano",
+        "price": 4.00,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Caramel Macchiato",
+        "price": 5.50,
+        "isFavorite": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Iced Coffee",
+        "price": 4.25,
+        "isFavorite": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Hot Chocolate",
+        "price": 4.00,
+        "isFavorite": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Tea (Assorted)",
+        "price": 3.00,
+        "isFavorite": false,
+        "rating": 4.1
+      },
+      {
+        "name": "Scone",
+        "price": 3.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Breakfast Sandwich",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Smoothie",
+        "price": 5.50,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Belgian Waffle",
+        "price": 7.00,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Pancakes",
+        "price": 8.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Fruit Salad",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Oatmeal",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Yogurt Parfait",
+        "price": 6.50,
+        "isFavorite": false,
+        "rating": 4.4
+      }
+    ]
+  },
+  {
+    "name": "Pizza Palace",
+    "imageUrl": "https://picsum.photos/200/200?random=1",
+    "category": "Pizza",
+    "rating": 4.2,
+    "reviewCount": 90,
+    "location": "Building B, First Floor",
+    "menu": [
+      {
+        "name": "Pepperoni Pizza",
+        "price": 12.00,
+        "isFavorite": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Margherita Pizza",
+        "price": 11.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Garlic Bread",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Veggie Pizza",
+        "price": 13.50,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Chicken Alfredo Pasta",
+        "price": 14.00,
+        "isFavorite": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Meat Lover's Pizza",
+        "price": 14.50,
+        "isFavorite": false,
+        "rating": 4.9
+      },
+      {
+        "name": "Hawaiian Pizza",
+        "price": 13.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Four Cheese Pasta",
+        "price": 13.00,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Caesar Salad",
+        "price": 7.00,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Tiramisu",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Calzone",
+        "price": 10.00,
+        "isFavorite": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Focaccia Bread",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.1
+      },
+      {
+        "name": "Cannoli",
+        "price": 4.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Minestrone Soup",
+        "price": 8.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Arancini",
+        "price": 9.00,
+        "isFavorite": false,
+        "rating": 4.6
+      }
+    ]
+  },
+  {
+    "name": "Burger Barn",
+    "imageUrl": "https://picsum.photos/200/200?random=2",
+    "category": "Fast Food",
+    "rating": 4.0,
+    "reviewCount": 150,
+    "location": "Building C, Food Court",
+    "menu": [
+      {
+        "name": "Classic Burger",
+        "price": 9.50,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Fries",
+        "price": 3.50,
+        "isFavorite": false,
+        "rating": 4.1
+      },
+      {
+        "name": "Cheese Burger",
+        "price": 10.00,
+        "isFavorite": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Onion Rings",
+        "price": 4.00,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Milkshake",
+        "price": 5.50,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Spicy Chicken Burger",
+        "price": 11.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Veggie Burger",
+        "price": 9.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Coleslaw",
+        "price": 3.00,
+        "isFavorite": false,
+        "rating": 3.9
+      },
+      {
+        "name": "Soda",
+        "price": 2.50,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Apple Pie",
+        "price": 4.00,
+        "isFavorite": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Fish Burger",
+        "price": 10.50,
+        "isFavorite": false,
+        "rating": 4.1
+      },
+      {
+        "name": "Chicken Nuggets",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Hot Dog",
+        "price": 7.00,
+        "isFavorite": false,
+        "rating": 3.8
+      },
+      {
+        "name": "Corn Dog",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 3.7
+      },
+      {
+        "name": "Sundae",
+        "price": 4.50,
+        "isFavorite": false,
+        "rating": 4.3
+      }
+    ]
+  },
+  {
+    "name": "Sushi Spot",
+    "imageUrl": "https://picsum.photos/200/200?random=3",
+    "category": "Sushi",
+    "rating": 4.7,
+    "reviewCount": 80,
+    "location": "Building D, Second Floor",
+    "menu": [
+      {
+        "name": "Salmon Roll",
+        "price": 15.00,
+        "isFavorite": false,
+        "rating": 4.9
+      },
+      {
+        "name": "Tuna Nigiri",
+        "price": 18.00,
+        "isFavorite": false,
+        "rating": 4.8
+      },
+      {
+        "name": "California Roll",
+        "price": 14.00,
+        "isFavorite": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Shrimp Tempura",
+        "price": 16.00,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Dragon Roll",
+        "price": 20.00,
+        "isFavorite": false,
+        "rating": 5.0
+      },
+      {
+        "name": "Sashimi Platter",
+        "price": 25.00,
+        "isFavorite": false,
+        "rating": 4.9
+      },
+      {
+        "name": "Miso Soup",
+        "price": 4.00,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Edamame",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.1
+      },
+      {
+        "name": "Green Tea Ice Cream",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Avocado Roll",
+        "price": 12.00,
+        "isFavorite": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Spicy Tuna Roll",
+        "price": 16.00,
+        "isFavorite": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Rainbow Roll",
+        "price": 19.00,
+        "isFavorite": false,
+        "rating": 4.9
+      },
+      {
+        "name": "Tempura Udon",
+        "price": 15.00,
+        "isFavorite": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Gyoza",
+        "price": 8.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Sake",
+        "price": 10.00,
+        "isFavorite": false,
+        "rating": 4.5
+      }
+    ]
+  },
+  {
+    "name": "Taco Town",
+    "imageUrl": "https://picsum.photos/200/200?random=4",
+    "category": "Mexican",
+    "rating": 3.9,
+    "reviewCount": 110,
+    "location": "Building E, Ground Floor",
+    "menu": [
+      {
+        "name": "Chicken Taco",
+        "price": 4.00,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Beef Burrito",
+        "price": 10.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Quesadilla",
+        "price": 8.50,
+        "isFavorite": false,
+        "rating": 3.9
+      },
+      {
+        "name": "Nachos",
+        "price": 9.00,
+        "isFavorite": false,
+        "rating": 4.1
+      },
+      {
+        "name": "Pork Carnitas Taco",
+        "price": 4.50,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Fish Taco",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Guacamole & Chips",
+        "price": 7.00,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Churros",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Margarita",
+        "price": 10.00,
+        "isFavorite": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Enchilada",
+        "price": 11.00,
+        "isFavorite": false,
+        "rating": 4.1
+      },
+      {
+        "name": "Bean Burrito",
+        "price": 9.00,
+        "isFavorite": false,
+        "rating": 3.8
+      },
+      {
+        "name": "Tostada",
+        "price": 8.00,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Salsa & Chips",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Elote",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Horchata",
+        "price": 4.00,
+        "isFavorite": false,
+        "rating": 4.3
+      }
+    ]
+  },
+  {
+    "name": "Noodle Nook",
+    "imageUrl": "https://picsum.photos/200/200?random=5",
+    "category": "Noodles",
+    "rating": 4.1,
+    "reviewCount": 95,
+    "location": "Building F, First Floor",
+    "menu": [
+      {
+        "name": "Ramen",
+        "price": 13.00,
+        "isFavorite": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Pad Thai",
+        "price": 12.50,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Udon",
+        "price": 11.50,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Pho",
+        "price": 13.50,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Drunken Noodles",
+        "price": 14.00,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Lo Mein",
+        "price": 11.00,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Spring Rolls",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Dumplings",
+        "price": 7.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Kimchi",
+        "price": 4.00,
+        "isFavorite": false,
+        "rating": 4.1
+      },
+      {
+        "name": "Bubble Tea",
+        "price": 5.50,
+        "isFavorite": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Wonton Soup",
+        "price": 8.00,
+        "isFavorite": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Egg Rolls",
+        "price": 6.50,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Sesame Noodles",
+        "price": 10.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Mango Sticky Rice",
+        "price": 7.00,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Thai Iced Tea",
+        "price": 4.50,
+        "isFavorite": false,
+        "rating": 4.3
+      }
+    ]
+  },
+  {
+    "name": "Healthy Bites",
+    "imageUrl": "https://picsum.photos/200/200?random=6",
+    "category": "Healthy",
+    "rating": 4.6,
+    "reviewCount": 75,
+    "location": "Building G, Ground Floor",
+    "menu": [
+      {
+        "name": "Quinoa Salad",
+        "price": 11.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Green Smoothie",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Avocado Toast",
+        "price": 8.00,
+        "isFavorite": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Chicken Wrap",
+        "price": 9.50,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Lentil Soup",
+        "price": 7.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Fruit Bowl",
+        "price": 6.50,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Oatmeal",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Protein Shake",
+        "price": 7.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Whole Wheat Sandwich",
+        "price": 8.50,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Detox Juice",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Vegetable Stir-fry",
+        "price": 12.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Grilled Salmon",
+        "price": 18.00,
+        "isFavorite": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Sweet Potato Fries",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.1
+      },
+      {
+        "name": "Black Bean Burger",
+        "price": 10.00,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Hummus Plate",
+        "price": 7.00,
+        "isFavorite": false,
+        "rating": 4.6
+      }
+    ]
+  },
+  {
+    "name": "Sweet Treats",
+    "imageUrl": "https://picsum.photos/200/200?random=7",
+    "category": "Desserts",
+    "rating": 4.3,
+    "reviewCount": 130,
+    "location": "Building H, Food Court",
+    "menu": [
+      {
+        "name": "Chocolate Cake",
+        "price": 7.00,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Ice Cream",
+        "price": 4.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Cheesecake",
+        "price": 6.50,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Brownie",
+        "price": 3.75,
+        "isFavorite": false,
+        "rating": 4.1
+      },
+      {
+        "name": "Cupcake",
+        "price": 3.00,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Macarons",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Fruit Tart",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Panna Cotta",
+        "price": 5.50,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Cookie Dough",
+        "price": 4.50,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Eclair",
+        "price": 4.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Red Velvet Cake",
+        "price": 7.50,
+        "isFavorite": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Creme Brulee",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Gelato",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Mousse",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Lemon Bar",
+        "price": 4.00,
+        "isFavorite": false,
+        "rating": 4.1
+      }
+    ]
+  },
+  {
+    "name": "Coffee Corner",
+    "imageUrl": "https://picsum.photos/200/200?random=8",
+    "category": "Coffee",
+    "rating": 4.4,
+    "reviewCount": 100,
+    "location": "Building I, First Floor",
+    "menu": [
+      {
+        "name": "Espresso",
+        "price": 3.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Americano",
+        "price": 3.50,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Flat White",
+        "price": 4.75,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Cold Brew",
+        "price": 4.25,
+        "isFavorite": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Latte Macchiato",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Mocha",
+        "price": 5.25,
+        "isFavorite": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Chai Latte",
+        "price": 4.50,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Frappuccino",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Cortado",
+        "price": 3.75,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Cappuccino Ice",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Affogato",
+        "price": 5.50,
+        "isFavorite": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Irish Coffee",
+        "price": 7.00,
+        "isFavorite": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Turkish Coffee",
+        "price": 4.00,
+        "isFavorite": false,
+        "rating": 4.1
+      },
+      {
+        "name": "Decaf Coffee",
+        "price": 3.50,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Syphon Coffee",
+        "price": 8.00,
+        "isFavorite": false,
+        "rating": 4.9
+      }
+    ]
+  },
+  {
+    "name": "Juice Junction",
+    "imageUrl": "https://picsum.photos/200/200?random=9",
+    "category": "Juice",
+    "rating": 4.0,
+    "reviewCount": 60,
+    "location": "Building J, Ground Floor",
+    "menu": [
+      {
+        "name": "Orange Juice",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.1
+      },
+      {
+        "name": "Apple Juice",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Mango Smoothie",
+        "price": 6.50,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Berry Blast",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Pineapple Juice",
+        "price": 5.50,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Watermelon Juice",
+        "price": 5.50,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Lemonade",
+        "price": 4.00,
+        "isFavorite": false,
+        "rating": 4.1
+      },
+      {
+        "name": "Strawberry Banana Smoothie",
+        "price": 7.00,
+        "isFavorite": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Green Juice",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Coconut Water",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Grape Juice",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 4.1
+      },
+      {
+        "name": "Peach Smoothie",
+        "price": 6.50,
+        "isFavorite": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Tropical Blend",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Carrot Juice",
+        "price": 5.00,
+        "isFavorite": false,
+        "rating": 3.9
+      },
+      {
+        "name": "Ginger Zinger",
+        "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.2
+      }
+    ]
+  }
+]

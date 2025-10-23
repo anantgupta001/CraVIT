@@ -42,7 +42,7 @@ class MessMenuPage extends StatelessWidget {
   const MessMenuPage({super.key});
 
   static Future<List<MessDayMenu>> _loadMessMenuData() async {
-    final String response = await rootBundle.loadString('lib/mess_menu.json');
+    final String response = await rootBundle.loadString('assets/mess_menu.json');
     final List<dynamic> data = json.decode(response);
     final now = DateTime.now();
 

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart'; // Import provider
 import 'package:cravit/cart_provider.dart'; // Import CartProvider
 import 'package:cravit/theme_provider.dart'; // Import ThemeProvider
 import 'package:cravit/favorite_provider.dart'; // Import FavoriteProvider
+import 'package:cravit/pages/splash_screen.dart'; // Import SplashScreen
 
 void main() {
   runApp(
@@ -32,20 +33,40 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           themeMode: (themeProvider as ThemeProvider).themeMode, // Use themeMode from ThemeProvider
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+            colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF70180E)),
             useMaterial3: true,
-            // Define light theme settings here if needed
+            scaffoldBackgroundColor: const Color(0xFFF5EEEA),
+            appBarTheme: const AppBarTheme(
+              backgroundColor: Color(0xFF70180E),
+              foregroundColor: Color(0xFFF5EEEA),
+              centerTitle: true,
+            ),
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF70180E),
+                foregroundColor: const Color(0xFFF5EEEA),
+              ),
+            ),
           ),
           darkTheme: ThemeData(
             brightness: Brightness.dark,
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue, brightness: Brightness.dark),
-            scaffoldBackgroundColor: Colors.black87, // Dark background for dark mode
-            appBarTheme: const AppBarTheme(backgroundColor: Colors.black, foregroundColor: Colors.white), // Dark app bar
-            cardColor: Colors.grey[900], // Dark card color
+            colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF70180E), brightness: Brightness.dark),
+            scaffoldBackgroundColor: Colors.black,
+            appBarTheme: const AppBarTheme(
+              backgroundColor: Color(0xFF70180E),
+              foregroundColor: Color(0xFFF5EEEA),
+              centerTitle: true,
+            ),
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF70180E),
+                foregroundColor: const Color(0xFFF5EEEA),
+              ),
+            ),
             // Define other dark theme settings here
             useMaterial3: true,
           ),
-          home: const MyHomePage(title: 'Sign in to your account'),
+          home: const SplashScreen(), // Set SplashScreen as the initial home route
         );
       },
     );
@@ -102,7 +123,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black87, // Dark background
       // appBar: AppBar(
       //   backgroundColor: Colors.blue,
       //   title: Text('Sign in to your account'),
@@ -111,27 +131,27 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
+            Text(
               'Log In',
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onBackground),
             ),
             const SizedBox(height: 10),
-            const Text(
+            Text(
               'Sign into your existing account',
-              style: TextStyle(fontSize: 16, color: Colors.white70),
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7)),
             ),
             const SizedBox(height: 50),
             // Removed "I'm home" text
             ElevatedButton(
               onPressed: _handleSignIn,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
+                // Removed hardcoded background and foreground colors as they are now defined in ThemeData
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
               ),
-              child: const Text("Sign In", style: TextStyle(fontSize: 18, color: Colors.white)),
+              child: const Text("Sign In", style: TextStyle(fontSize: 18)),
             ),
           ],
         ),
