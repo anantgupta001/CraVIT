@@ -325,7 +325,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             IconButton(
-              icon: Icon(Icons.apartment, color: isDarkMode ? Colors.white : Colors.black54), // Adjust based on theme
+              icon: Icon(Icons.menu_book, color: isDarkMode ? Colors.white : Colors.black54), // Adjust based on theme
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => MessMenuPage()),

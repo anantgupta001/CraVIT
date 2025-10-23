@@ -14,8 +14,9 @@ class MenuItem {
   final double price;
   bool isFavorite; // Add this field
   double? rating; // Add this field
+  final String? shopName; // Add this line
 
-  MenuItem({required this.name, required this.price, this.isFavorite = false, this.rating});
+  MenuItem({required this.name, required this.price, this.isFavorite = false, this.rating, this.shopName = 'Unknown Shop'}); // Update constructor
 
   factory MenuItem.fromJson(Map<String, dynamic> json) {
     return MenuItem(
@@ -23,6 +24,7 @@ class MenuItem {
       price: (json['price'] as num).toDouble(),
       isFavorite: json['isFavorite'] as bool? ?? false,
       rating: (json['rating'] as num?)?.toDouble(),
+      shopName: json['shopName'] as String? ?? 'Unknown Shop', // Add this line
     );
   }
 }
@@ -41,7 +43,12 @@ class Shop {
 
   factory Shop.fromJson(Map<String, dynamic> json) {
     var menuList = json['menu'] as List;
-    List<MenuItem> menuItems = menuList.map((i) => MenuItem.fromJson(i)).toList();
+    String shopName = json['name'] as String; // Get the shop name
+    List<MenuItem> menuItems = menuList.map((i) {
+      Map<String, dynamic> itemMap = Map<String, dynamic>.from(i);
+      itemMap['shopName'] = shopName; // Add the shopName to the item map
+      return MenuItem.fromJson(itemMap);
+    }).toList();
 
     return Shop(
       name: json['name'] as String,

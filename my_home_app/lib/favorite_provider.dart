@@ -22,6 +22,7 @@ class FavoriteProvider with ChangeNotifier {
           name: itemMap['name'],
           price: itemMap['price'],
           isFavorite: itemMap['isFavorite'] ?? false,
+          shopName: itemMap['shopName'], // Add this line
         );
       }).toList();
       notifyListeners();
@@ -35,6 +36,7 @@ class FavoriteProvider with ChangeNotifier {
         'name': item.name,
         'price': item.price,
         'isFavorite': item.isFavorite,
+        'shopName': item.shopName, // Add this line
       });
     }).toList();
     prefs.setStringList('favoriteItems', favoriteItemsString);
