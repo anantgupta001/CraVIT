@@ -221,58 +221,12 @@ class _HomePageState extends State<HomePage> {
                       mainAxisSpacing: 25.0, // Spacing between rows
                       crossAxisSpacing: 25.0, // Spacing between columns
                       children: <Widget>[
-                        IconButton(
-                          icon: Icon(Icons.store, color: isDarkMode ? Colors.white : Colors.black, size: 50), // Adjust based on theme
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => ShopPage()), // All Shops
-                            );
-                          },
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.restaurant, color: isDarkMode ? Colors.white : Colors.black, size: 50), // Adjust based on theme
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => ShopPage(shopCategory: 'Restaurant')),
-                            );
-                          },
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.local_cafe, color: isDarkMode ? Colors.white : Colors.black, size: 50), // Adjust based on theme
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => ShopPage(shopCategory: 'Cafe')),
-                            );
-                          },
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.shopping_bag, color: isDarkMode ? Colors.white : Colors.black, size: 50), // Adjust based on theme
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => ShopPage(shopCategory: 'Desserts')),
-                            );
-                          },
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.fastfood, color: isDarkMode ? Colors.white : Colors.black, size: 50), // Adjust based on theme
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => ShopPage(shopCategory: 'Fast Food')),
-                            );
-                          },
-                        ),
-                        SizedBox(
-                          width: 100,
-                          height: 100,
-                          child: IconButton(
-                            icon: Icon(Icons.apps, color: isDarkMode ? Colors.white : Colors.black, size: 50), // Adjust based on theme
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(builder: (context) => ShopPage()), // All Shops (or a dedicated 'More' page)
-                              );
-                            },
-                          ),
-                        ),
+                        _buildShopButton(context, 'Food Street', Icons.food_bank, isDarkMode),
+                        _buildShopButton(context, 'Rock Plaza', Icons.storefront, isDarkMode),
+                        _buildShopButton(context, 'Maggie Hotspot', Icons.ramen_dining, isDarkMode),
+                        _buildShopButton(context, 'AB-1', Icons.apartment, isDarkMode),
+                        _buildShopButton(context, 'CB', Icons.business, isDarkMode),
+                        _buildShopButton(context, 'All Shops', Icons.apps, isDarkMode),
                       ],
                     ),
                   ),
@@ -282,6 +236,24 @@ class _HomePageState extends State<HomePage> {
           );
         }
       },
+    );
+  }
+
+  Widget _buildShopButton(BuildContext context, String title, IconData icon, bool isDarkMode) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => ShopPage(shopLocation: title == 'All Shops' ? null : title)),
+        );
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, color: isDarkMode ? Colors.white : Colors.black, size: 40),
+          const SizedBox(height: 8),
+          Text(title, style: TextStyle(color: isDarkMode ? Colors.white : Colors.black, fontSize: 14), textAlign: TextAlign.center),
+        ],
+      ),
     );
   }
 

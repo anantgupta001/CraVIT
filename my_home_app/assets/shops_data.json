@@ -5,7 +5,7 @@
     "category": "Cafe",
     "rating": 4.5,
     "reviewCount": 120,
-    "location": "Building A, Ground Floor",
+    "location": "Food Street",
     "menu": [
       {
         "name": "Cappuccino",
@@ -129,7 +129,7 @@
     "category": "Pizza",
     "rating": 4.2,
     "reviewCount": 90,
-    "location": "Building B, First Floor",
+    "location": "Rock Plaza",
     "menu": [
       {
         "name": "Pepperoni Pizza",
@@ -229,7 +229,7 @@
     "category": "Fast Food",
     "rating": 4.0,
     "reviewCount": 150,
-    "location": "Building C, Food Court",
+    "location": "Maggie Hotspot",
     "menu": [
       {
         "name": "Classic Burger",
@@ -329,7 +329,7 @@
     "category": "Sushi",
     "rating": 4.7,
     "reviewCount": 80,
-    "location": "Building D, Second Floor",
+    "location": "AB-1",
     "menu": [
       {
         "name": "Salmon Roll",
@@ -429,7 +429,7 @@
     "category": "Mexican",
     "rating": 3.9,
     "reviewCount": 110,
-    "location": "Building E, Ground Floor",
+    "location": "CB",
     "menu": [
       {
         "name": "Chicken Taco",
@@ -529,7 +529,7 @@
     "category": "Noodles",
     "rating": 4.1,
     "reviewCount": 95,
-    "location": "Building F, First Floor",
+    "location": "Food Street",
     "menu": [
       {
         "name": "Ramen",
@@ -629,7 +629,7 @@
     "category": "Healthy",
     "rating": 4.6,
     "reviewCount": 75,
-    "location": "Building G, Ground Floor",
+    "location": "Rock Plaza",
     "menu": [
       {
         "name": "Quinoa Salad",
@@ -729,7 +729,7 @@
     "category": "Desserts",
     "rating": 4.3,
     "reviewCount": 130,
-    "location": "Building H, Food Court",
+    "location": "Maggie Hotspot",
     "menu": [
       {
         "name": "Chocolate Cake",
@@ -829,7 +829,7 @@
     "category": "Coffee",
     "rating": 4.4,
     "reviewCount": 100,
-    "location": "Building I, First Floor",
+    "location": "AB-1",
     "menu": [
       {
         "name": "Espresso",
@@ -929,7 +929,7 @@
     "category": "Juice",
     "rating": 4.0,
     "reviewCount": 60,
-    "location": "Building J, Ground Floor",
+    "location": "CB",
     "menu": [
       {
         "name": "Orange Juice",
@@ -1018,6 +1018,34 @@
       {
         "name": "Ginger Zinger",
         "price": 6.00,
+        "isFavorite": false,
+        "rating": 4.2
+      }
+    ]
+  },
+  {
+    "name": "AB-2 Bites",
+    "imageUrl": "https://picsum.photos/200/200?random=10",
+    "category": "Snacks",
+    "rating": 4.0,
+    "reviewCount": 50,
+    "location": "AB-2",
+    "menu": [
+      {
+        "name": "Chips",
+        "price": 2.00,
+        "isFavorite": false,
+        "rating": 3.8
+      },
+      {
+        "name": "Cookies",
+        "price": 2.50,
+        "isFavorite": false,
+        "rating": 4.0
+      },
+      {
+        "name": "Sandwich",
+        "price": 5.00,
         "isFavorite": false,
         "rating": 4.2
       }

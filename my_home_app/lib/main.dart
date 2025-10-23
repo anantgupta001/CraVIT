@@ -5,7 +5,6 @@ import 'package:provider/provider.dart'; // Import provider
 import 'package:cravit/cart_provider.dart'; // Import CartProvider
 import 'package:cravit/theme_provider.dart'; // Import ThemeProvider
 import 'package:cravit/favorite_provider.dart'; // Import FavoriteProvider
-import 'package:cravit/pages/splash_screen.dart'; // Import SplashScreen
 
 void main() {
   runApp(
@@ -66,7 +65,7 @@ class MyApp extends StatelessWidget {
             // Define other dark theme settings here
             useMaterial3: true,
           ),
-          home: const SplashScreen(), // Set SplashScreen as the initial home route
+          home: const MyHomePage(title: 'Sign in to your account'), // Set MyHomePage as the initial home route
         );
       },
     );

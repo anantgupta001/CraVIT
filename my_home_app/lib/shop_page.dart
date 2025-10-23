@@ -57,7 +57,9 @@ class Shop {
 
 class ShopPage extends StatefulWidget {
   final String? shopCategory;
-  const ShopPage({super.key, this.shopCategory});
+  final String? shopLocation; // Add this line
+
+  const ShopPage({super.key, this.shopCategory, this.shopLocation}); // Update constructor
 
   static Future<List<Shop>> _loadShopData() async {
     final String response = await rootBundle.loadString('assets/shops_data.json');
@@ -84,6 +86,8 @@ class _ShopPageState extends State<ShopPage> {
       _shops = loadedShops;
       if (widget.shopCategory != null) {
         _shops = _shops.where((shop) => shop.category == widget.shopCategory).toList();
+      } else if (widget.shopLocation != null) { // Add this new condition for location filtering
+        _shops = _shops.where((shop) => shop.location == widget.shopLocation).toList();
       }
     });
   }
