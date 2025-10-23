@@ -8,6 +8,8 @@ import 'package:cravit/settings_page.dart'; // Import the new settings_page.dart
 import 'package:cravit/personal_information_page.dart'; // Import the new personal_information_page.dart
 import 'package:provider/provider.dart'; // Import provider
 import 'package:cravit/theme_provider.dart'; // Import ThemeProvider
+import 'package:cravit/faq_page.dart'; // Import FaqPage
+import 'package:cravit/about_page.dart'; // Import AboutPage
 
 class ProfilePage extends StatefulWidget {
   final GoogleSignIn googleSignIn;
@@ -121,8 +123,16 @@ class _ProfilePageState extends State<ProfilePage> {
             _buildSection(
               context,
               [
-                _buildListItem(context, Icons.help, 'FAQs', () {}, iconColor: isDarkMode ? Colors.white : Colors.black54, textColor: isDarkMode ? Colors.white : Colors.black),
-                _buildListItem(context, Icons.info, 'About', () {}, iconColor: isDarkMode ? Colors.white : Colors.black54, textColor: isDarkMode ? Colors.white : Colors.black),
+                _buildListItem(context, Icons.help, 'FAQs', () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const FaqPage()),
+                  );
+                }, iconColor: isDarkMode ? Colors.white : Colors.black54, textColor: isDarkMode ? Colors.white : Colors.black),
+                _buildListItem(context, Icons.info, 'About', () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const AboutPage()),
+                  );
+                }, iconColor: isDarkMode ? Colors.white : Colors.black54, textColor: isDarkMode ? Colors.white : Colors.black),
                 _buildListItem(context, Icons.settings, 'Settings', () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => SettingsPage()),
