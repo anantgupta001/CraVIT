@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "379466219783",
+    "project_id": "cravit-239b3",
+    "storage_bucket": "cravit-239b3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379466219783:android:a8cc16500503cfd3f405a2",
+        "android_client_info": {
+          "package_name": "com.cravit.student"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "379466219783-74kup6n2g4f6afsdpkjs0t4hdmuv3liq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cravit.student",
+            "certificate_hash": "8d04926ac08ed48bcada5d1234f569170530952e"
+          }
+        },
+        {
+          "client_id": "379466219783-0r9m2h5paiq39u4fskhkh6ra371gql70.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0BiqL7pcKiS92-dLNw_K-X1fS5FALmew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "379466219783-0r9m2h5paiq39u4fskhkh6ra371gql70.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

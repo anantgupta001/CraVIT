@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isVendorUser(vendorId) {
+      return request.auth != null &&
+             exists(/databases/$(database)/documents/vendors/$(vendorId)/users/$(request.auth.uid));
+    }
+
+    match /orders/{orderId} {
+      allow read: if resource.data.vendorId is string
+                  && isVendorUser(resource.data.vendorId);
+      allow write: if false; // tighten as needed
+    }
+
+    // Keep all else denied by default
+  }
+}

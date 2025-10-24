@@ -1,0 +1,21 @@
+name: cravit_core
+description: A collection of core models and services for Cravit apps.
+version: 0.0.1
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cloud_firestore: ^5.6.11
+  firebase_core: ^3.15.0
+  cloud_functions: ^5.1.2
+  firebase_auth: ^5.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
