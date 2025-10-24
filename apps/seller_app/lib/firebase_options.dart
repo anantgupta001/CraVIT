@@ -41,7 +41,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyD_WwVjk3Eti4Wrgwhkaykz-9eMmD4Vj1I',
+    apiKey: 'ADD_YOUR_OWN_API_KEY',
     appId: '1:379466219783:web:b0b0e93036dbe7fbf405a2',
     messagingSenderId: '379466219783',
     projectId: 'cravit-239b3',
@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB0BiqL7pcKiS92-dLNw_K-X1fS5FALmew',
+    apiKey: 'ADD_YOUR_OWN_API_KEY',
     appId: '1:379466219783:android:8a8e53ed9ddfb95bf405a2',
     messagingSenderId: '379466219783',
     projectId: 'cravit-239b3',
@@ -59,7 +59,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDMgjy5Ex06fk0FJFGQWutCchJDpE8oDFM',
+    apiKey: 'ADD_YOUR_OWN_API_KEY',
     appId: '1:379466219783:ios:f4a71d060812de84f405a2',
     messagingSenderId: '379466219783',
     projectId: 'cravit-239b3',
@@ -70,7 +70,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDMgjy5Ex06fk0FJFGQWutCchJDpE8oDFM',
+    apiKey: 'ADD_YOUR_OWN_API_KEY',
     appId: '1:379466219783:ios:f4a71d060812de84f405a2',
     messagingSenderId: '379466219783',
     projectId: 'cravit-239b3',
