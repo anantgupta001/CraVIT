@@ -14,7 +14,16 @@ The monorepo is structured to host multiple Flutter apps and shared packages —
 
 ## 🏗 Project Structure
 
-Cravit/ ├── .editorconfig ├── .gitattributes ├── .github/ │   └── workflows/           # CI/CD configurations (coming soon) ├── apps/ │   ├── student_app/         # Flutter app for students (originally my_home_app) │   └── seller_app/          # Flutter app for vendors ├── packages/                # Shared packages (common widgets, services, utils, etc.) └── README.md
+Cravit/
+├── .editorconfig
+├── .gitattributes
+├── .github/
+│   └── workflows/           # CI/CD configurations (coming soon)
+├── apps/
+│   ├── student_app/         # Flutter app for students (originally my_home_app)
+│   └── seller_app/          # Flutter app for vendors
+├── packages/                # Shared packages (common widgets, services, utils, etc.)
+└── README.md
 
 ---
 
@@ -168,7 +177,7 @@ This project is licensed under the MIT License.
 ### 💬 Contact
 
 📧 Team Cravit
-For any queries or collaboration: [to be added]
+For any queries or collaboration: anantagarwal4946@gmail.com
 
 ---
 
